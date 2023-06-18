@@ -4,6 +4,12 @@ Component: ARM Compiler 5.06 update 6 (build 750) Tool: armlink [4d35ed]
 
 Section Cross References
 
+    led.o(i.LED_init) refers to led_cfg.o(.constdata) for gl_Led_Config
+    led.o(i.LED_off) refers to led_cfg.o(.constdata) for gl_Led_Config
+    led.o(i.LED_on) refers to led_cfg.o(.constdata) for gl_Led_Config
+    led.o(i.LED_toggle) refers to led_cfg.o(.constdata) for gl_Led_Config
+    button.o(i.BUTTON_init) refers to button_cfg.o(.constdata) for gl_button_Config
+    button.o(i.BUTTON_read) refers to button_cfg.o(.constdata) for gl_button_Config
     startup_tm4c123.o(STACK) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
     startup_tm4c123.o(HEAP) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
     startup_tm4c123.o(RESET) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
@@ -120,6 +126,14 @@ Section Cross References
 
 Removing Unused input sections from the image.
 
+    Removing led.o(i.LED_init), (72 bytes).
+    Removing led.o(i.LED_off), (104 bytes).
+    Removing led.o(i.LED_on), (104 bytes).
+    Removing led.o(i.LED_toggle), (100 bytes).
+    Removing led_cfg.o(.constdata), (60 bytes).
+    Removing button.o(i.BUTTON_init), (68 bytes).
+    Removing button.o(i.BUTTON_read), (108 bytes).
+    Removing button_cfg.o(.constdata), (40 bytes).
     Removing system_tm4c123.o(.rev16_text), (4 bytes).
     Removing system_tm4c123.o(.revsh_text), (4 bytes).
     Removing system_tm4c123.o(.rrx_text), (6 bytes).
@@ -127,4 +141,4 @@ Removing Unused input sections from the image.
     Removing system_tm4c123.o(i.getOscClk), (244 bytes).
     Removing system_tm4c123.o(.data), (4 bytes).
 
-6 unused section(s) (total 458 bytes) removed from the image.
+14 unused section(s) (total 1114 bytes) removed from the image.

@@ -10,6 +10,7 @@
       <TargetName>Target 1</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
+      <pCCUsed>5060750::V5.06 update 6 (build 750)::ARMCC</pCCUsed>
       <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -406,6 +407,21 @@
               <FileType>5</FileType>
               <FilePath>.\led.h</FilePath>
             </File>
+            <File>
+              <FileName>led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\led.c</FilePath>
+            </File>
+            <File>
+              <FileName>led_cfg.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\led_cfg.c</FilePath>
+            </File>
+            <File>
+              <FileName>led_cfg.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\led_cfg.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -415,6 +431,21 @@
               <FileName>button.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\button.h</FilePath>
+            </File>
+            <File>
+              <FileName>button.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\button.c</FilePath>
+            </File>
+            <File>
+              <FileName>button_cfg.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\button_cfg.c</FilePath>
+            </File>
+            <File>
+              <FileName>button_cfg.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\button_cfg.h</FilePath>
             </File>
           </Files>
         </Group>
