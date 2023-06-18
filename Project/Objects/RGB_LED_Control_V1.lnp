@@ -1,4 +1,6 @@
 --cpu=Cortex-M4.fp.sp
+".\objects\app.o"
+".\objects\gpio_program.o"
 ".\objects\led.o"
 ".\objects\led_cfg.o"
 ".\objects\button.o"
