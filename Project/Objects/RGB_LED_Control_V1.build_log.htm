@@ -17,12 +17,12 @@ Library Manager: ArmAr.exe V5.06 update 6 (build 750)
 Hex Converter:   FromElf.exe V5.06 update 6 (build 750)
 CPU DLL:         SARMCM3.DLL V5.29.0.0
 Dialog DLL:      DCM.DLL V1.17.3.0
-Target DLL:      UL2CM3.DLL V1.163.0.0
+Target DLL:      lmidk-agdi.dll V???
 Dialog DLL:      TCM.DLL V1.36.5.0
  
 <h2>Project:</h2>
 D:\RGB_LED_Control_V1.0\Project\RGB_LED_Control_V1.0.uvprojx
-Project File Date:  06/18/2023
+Project File Date:  06/19/2023
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
@@ -44,9 +44,10 @@ button.c: 2 warnings, 0 errors
 compiling button_cfg.c...
 compiling gpio_program.c...
 assembling startup_TM4C123.s...
+compiling systick_program.c...
 compiling system_TM4C123.c...
 linking...
-Program Size: Code=5440 RO-data=752 RW-data=16 ZI-data=800  
+Program Size: Code=5684 RO-data=752 RW-data=20 ZI-data=804  
 FromELF: creating hex file...
 ".\Objects\RGB_LED_Control_V1.0" - 0 Error(s), 4 Warning(s).
 
@@ -74,10 +75,10 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.3.0
 
    * Component: Keil::Device:Startup:1.0.1
-      Include file:  Device\Include\TM4C123\TM4C123.h
       Source file:   Device\Source\system_TM4C123.c
+      Include file:  Device\Include\TM4C123\TM4C123.h
       Source file:   Device\Source\ARM\startup_TM4C123.s
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>
