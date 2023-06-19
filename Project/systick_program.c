@@ -18,6 +18,17 @@ void SYSTICK_init (void)
 {
 	SET_BIT(STCTRL,STCTRL_ENABLE);
 }
+
+
+void SYSTICK_enable_interrupt (void)
+{
+	SET_BIT(STCTRL,STCTRL_INTEN);
+}
+
+void SYSTICK_disable_interrupt (void)
+{
+	CLEAR_BIT(STCTRL,STCTRL_INTEN);
+}
 enu_systick_status_t SYSTICK_synchronous_time_ms (uint32_t arg_time_ms)
 {
 	uint32_t             uint32_loc_reload_value   = FALSE;

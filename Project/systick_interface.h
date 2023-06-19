@@ -38,6 +38,25 @@ typedef enum
 *@return     : void
 */
 void SYSTICK_init (void);
+
+/*
+*@name       : SYSTICK_enable_interrupt
+*@berif      : this function enable interrupt in Systick Module
+*@param[in]  : void
+						
+					
+*@return     : void
+*/
+void SYSTICK_enable_interrupt (void);
+/*
+*@name       : SYSTICK_disable_interrupt
+*@berif      : this function disable interrupt in Systick Module
+*@param[in]  : void
+						
+					
+*@return     : void
+*/
+void SYSTICK_disable_interrupt (void);
 /*
 *@name       : SYSTICK_synchronous_time_ms
 *@berif      : this function generate synchronous delay in milli seconds
