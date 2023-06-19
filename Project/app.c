@@ -3,7 +3,7 @@
 #include "app.h"
 
 uint8_t gl_app_state    = FALSE; //to control app sequence
-uint8_t gl_app_isfinish = FALSE; //to control non repeating intrance 
+boolean gl_app_isfinish = FALSE; //to control non repeating intrance 
 
 int main(void)
 {
@@ -24,6 +24,7 @@ int main(void)
 			}
 	  // handle debouncing		
 			SYSTICK_synchronous_time_ms(200);
+			gl_app_isfinish = TRUE;
 			gl_app_state++;
 		  
 
@@ -38,14 +39,14 @@ int main(void)
 			}
 			else if(gl_app_state == RED_LED_STATE)
 			{
-				if(gl_app_isfinish == INITIAL_STATE)
+				if(gl_app_isfinish == TRUE)
 				{
 					(void)LED_on(LED_RED);
 				  SYSTICK_synchronous_time_ms(ONE_SECOND);
 				  (void)LED_off(LED_RED);
 				  (void)LED_off(LED_GREEN);
 				  (void)LED_off(LED_BLUE);
-					gl_app_isfinish = RED_LED_STATE;
+					gl_app_isfinish = FALSE;
 				}
 				else
 				{
@@ -56,14 +57,14 @@ int main(void)
 			}
 			else if(gl_app_state == GREEN_LED_STATE)
 			{
-				if(gl_app_isfinish == RED_LED_STATE)
+				if(gl_app_isfinish == TRUE)
 				{
 					(void)LED_off(LED_RED);
 					(void)LED_on(LED_GREEN);
 					SYSTICK_synchronous_time_ms(ONE_SECOND);
 					(void)LED_off(LED_GREEN);
 					(void)LED_off(LED_BLUE);
-					gl_app_isfinish = GREEN_LED_STATE;
+					gl_app_isfinish = FALSE;
 				}
 				else
 				{
@@ -72,14 +73,14 @@ int main(void)
 			}
 			else if(gl_app_state == BLUE_LED_STATE)
 			{
-				if(gl_app_isfinish == GREEN_LED_STATE)
+				if(gl_app_isfinish == TRUE)
 				{
 				  (void)LED_off(LED_RED);
 				  (void)LED_off(LED_GREEN);
 				  (void)LED_on(LED_BLUE);
 				  SYSTICK_synchronous_time_ms(ONE_SECOND);
 				  (void)LED_off(LED_BLUE);
-				  gl_app_isfinish = BLUE_LED_STATE;
+				  gl_app_isfinish = FALSE;
 				}
 				else
 				{
@@ -88,7 +89,7 @@ int main(void)
 			}
 			else if(gl_app_state == RGB_LED_STATE)
 			{
-				if(gl_app_isfinish == BLUE_LED_STATE)
+				if(gl_app_isfinish == TRUE)
 				{
 					(void)LED_on(LED_RED);
 					(void)LED_on(LED_GREEN);
@@ -97,7 +98,7 @@ int main(void)
 					(void)LED_off(LED_RED);
 					(void)LED_off(LED_GREEN);
 					(void)LED_off(LED_BLUE);
-					gl_app_isfinish = RGB_LED_STATE;
+					gl_app_isfinish = FALSE;
 				}
 				else
 				{
@@ -107,7 +108,6 @@ int main(void)
 			else
 			{
 				gl_app_state    = RED_LED_STATE;
-				gl_app_isfinish = INITIAL_STATE;
 			}
 		}
 	}
