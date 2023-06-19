@@ -25,47 +25,41 @@ int main(void)
 		  
 
 		}
-    switch(gl_app_state)
+		else
 		{
-			case 0 : 
+			if(gl_app_state == 0)
 			{
 				(void)LED_off(LED_RED);
 				(void)LED_off(LED_GREEN);
 				(void)LED_off(LED_BLUE);
-				break;
 			}
-			case 1 : 
+			else if(gl_app_state == 1)
 			{
 				(void)LED_on(LED_RED);
 				(void)LED_off(LED_GREEN);
 				(void)LED_off(LED_BLUE);
-				break;
 			}
-			case 2 : 
+			else if(gl_app_state == 2)
 			{
 				(void)LED_off(LED_RED);
 				(void)LED_on(LED_GREEN);
 				(void)LED_off(LED_BLUE);
-				break;
 			}
-			case 3 : 
+			else if(gl_app_state == 3)
 			{
 				(void)LED_off(LED_RED);
 				(void)LED_off(LED_GREEN);
 				(void)LED_on(LED_BLUE);
-				break;
 			}
-			case 4 : 
+			else if(gl_app_state == 4)
 			{
 				(void)LED_on(LED_RED);
 				(void)LED_on(LED_GREEN);
 				(void)LED_on(LED_BLUE);
-				break;
 			}
-			default :
+			else
 			{
-				gl_app_state = 0 ;
-				break;
+				gl_app_state = 0;
 			}
 		}
 	}
