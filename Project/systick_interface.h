@@ -22,7 +22,8 @@ typedef enum
 {
 	SYSTICK_OKAY           = 0,
 	INVALID_ARGUMENT_TIME,
-	NULL_CB_REF
+	NULL_CB_REF,
+	INVALID_OPERATION
 }enu_systick_status_t;	
 
 
@@ -35,9 +36,10 @@ typedef enum
 *@param[in]  : void
 						
 					
-*@return     : void
+*@return     :  SYSTICK_OKAY      (In case of successfull operation)
+                INVALID_OPERATION (In case of re initialization)
 */
-void SYSTICK_init (void);
+enu_systick_status_t SYSTICK_init (void);
 
 /*
 *@name       : SYSTICK_enable_interrupt
@@ -45,18 +47,20 @@ void SYSTICK_init (void);
 *@param[in]  : void
 						
 					
-*@return     : void
+*@return     :  SYSTICK_OKAY      (In case of successfull operation)
+                INVALID_OPERATION (In case of re enable interruot)
 */
-void SYSTICK_enable_interrupt (void);
+enu_systick_status_t SYSTICK_enable_interrupt (void);
 /*
 *@name       : SYSTICK_disable_interrupt
 *@berif      : this function disable interrupt in Systick Module
 *@param[in]  : void
 						
 					
-*@return     : void
+*@return     :  SYSTICK_OKAY      (In case of successfull operation)
+                INVALID_OPERATION (In case of re disable interrupt)
 */
-void SYSTICK_disable_interrupt (void);
+enu_systick_status_t SYSTICK_disable_interrupt (void);
 /*
 *@name       : SYSTICK_synchronous_time_ms
 *@berif      : this function generate synchronous delay in milli seconds
@@ -87,9 +91,10 @@ enu_systick_status_t SYSTICK_Asynchronous_time_ms(uint32_t arg_time_ms,ptrf_syst
 *@param[in]  :  void
 						
 					
-*@return     : void
+*@return     :  SYSTICK_OKAY      (In case of successfull operation)
+                INVALID_OPERATION (In case of re stoping systick module)
 */
-void SYSTICK_stop(void);
+enu_systick_status_t SYSTICK_stop(void);
 
 #endif
 
