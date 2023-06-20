@@ -475,6 +475,26 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>systick</GroupName>
+          <Files>
+            <File>
+              <FileName>systick_interface.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\systick_interface.h</FilePath>
+            </File>
+            <File>
+              <FileName>systick_private.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\systick_private.h</FilePath>
+            </File>
+            <File>
+              <FileName>systick_program.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\systick_program.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>::CMSIS</GroupName>
         </Group>
         <Group>

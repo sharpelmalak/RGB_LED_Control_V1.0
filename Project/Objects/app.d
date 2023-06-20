@@ -7,3 +7,4 @@
 .\objects\app.o: led_cfg.h
 .\objects\app.o: button.h
 .\objects\app.o: button_cfg.h
+.\objects\app.o: systick_interface.h
