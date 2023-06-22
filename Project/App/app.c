@@ -44,11 +44,11 @@ void app_start(void)
 		}
 		else
 		{
-			if(gl_app_state == 0)
+			if(gl_app_state == APP_STATE_ZERO)
 			{
 				// DO NOTHING
 			}
-			else if(gl_app_state == 1)
+			else if(gl_app_state == APP_STATE_ONE)
 			{
 				if(gl_lock_state == TRUE)
 				{
@@ -58,7 +58,7 @@ void app_start(void)
 				}
 				
 			}
-			else if(gl_app_state == 2)
+			else if(gl_app_state == APP_STATE_TWO)
 			{
 				if(gl_lock_state == TRUE)
 				{
@@ -67,7 +67,7 @@ void app_start(void)
 					gl_lock_state = FALSE;
 				}
 			}
-			else if(gl_app_state == 3)
+			else if(gl_app_state == APP_STATE_THREE)
 			{
 				if(gl_lock_state == TRUE)
 				{
