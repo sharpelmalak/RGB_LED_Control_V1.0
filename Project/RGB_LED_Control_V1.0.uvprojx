@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath></IncludePath>
+              <IncludePath>.\App;.\COMMON;.\HAL\led;.\HAL\button;.\MCAL\gpio;.\MCAL\gpt</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -383,14 +383,14 @@
           <GroupName>app</GroupName>
           <Files>
             <File>
-              <FileName>app.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\app.h</FilePath>
-            </File>
-            <File>
               <FileName>app.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\app.c</FilePath>
+              <FilePath>.\App\app.c</FilePath>
+            </File>
+            <File>
+              <FileName>app.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\App\app.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -400,17 +400,17 @@
             <File>
               <FileName>gpio_interface.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\gpio_interface.h</FilePath>
+              <FilePath>.\MCAL\gpio\gpio_interface.h</FilePath>
             </File>
             <File>
               <FileName>gpio_private.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\gpio_private.h</FilePath>
+              <FilePath>.\MCAL\gpio\gpio_private.h</FilePath>
             </File>
             <File>
               <FileName>gpio_program.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\gpio_program.c</FilePath>
+              <FilePath>.\MCAL\gpio\gpio_program.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -418,24 +418,24 @@
           <GroupName>led</GroupName>
           <Files>
             <File>
-              <FileName>led.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\led.h</FilePath>
-            </File>
-            <File>
               <FileName>led.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\led.c</FilePath>
+              <FilePath>.\HAL\led\led.c</FilePath>
+            </File>
+            <File>
+              <FileName>led.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\HAL\led\led.h</FilePath>
             </File>
             <File>
               <FileName>led_cfg.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\led_cfg.c</FilePath>
+              <FilePath>.\HAL\led\led_cfg.c</FilePath>
             </File>
             <File>
               <FileName>led_cfg.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\led_cfg.h</FilePath>
+              <FilePath>.\HAL\led\led_cfg.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -443,24 +443,24 @@
           <GroupName>button</GroupName>
           <Files>
             <File>
-              <FileName>button.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\button.h</FilePath>
-            </File>
-            <File>
               <FileName>button.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\button.c</FilePath>
+              <FilePath>.\HAL\button\button.c</FilePath>
+            </File>
+            <File>
+              <FileName>button.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\HAL\button\button.h</FilePath>
             </File>
             <File>
               <FileName>button_cfg.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\button_cfg.c</FilePath>
+              <FilePath>.\HAL\button\button_cfg.c</FilePath>
             </File>
             <File>
               <FileName>button_cfg.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\button_cfg.h</FilePath>
+              <FilePath>.\HAL\button\button_cfg.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -470,7 +470,37 @@
             <File>
               <FileName>common.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\common.h</FilePath>
+              <FilePath>.\COMMON\common.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>gpt</GroupName>
+          <Files>
+            <File>
+              <FileName>gpt_interface.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\MCAL\gpt\gpt_interface.h</FilePath>
+            </File>
+            <File>
+              <FileName>gpt_private.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\MCAL\gpt\gpt_private.h</FilePath>
+            </File>
+            <File>
+              <FileName>gpt_program.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\MCAL\gpt\gpt_program.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>main</GroupName>
+          <Files>
+            <File>
+              <FileName>main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\main.c</FilePath>
             </File>
           </Files>
         </Group>

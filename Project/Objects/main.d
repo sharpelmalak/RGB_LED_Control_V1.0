@@ -1,0 +1,10 @@
+.\objects\main.o: main.c
+.\objects\main.o: .\App\app.h
+.\objects\main.o: .\HAL\led\led.h
+.\objects\main.o: .\MCAL\gpio\gpio_interface.h
+.\objects\main.o: .\COMMON\common.h
+.\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\main.o: .\HAL\led\led_cfg.h
+.\objects\main.o: .\HAL\button\button.h
+.\objects\main.o: .\HAL\button\button_cfg.h
+.\objects\main.o: .\MCAL\gpt\gpt_interface.h
