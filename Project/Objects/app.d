@@ -7,4 +7,5 @@
 .\objects\app.o: .\HAL\led\led_cfg.h
 .\objects\app.o: .\HAL\button\button.h
 .\objects\app.o: .\HAL\button\button_cfg.h
+.\objects\app.o: .\HAL\htimer\htimer_interface.h
 .\objects\app.o: .\MCAL\gpt\gpt_interface.h

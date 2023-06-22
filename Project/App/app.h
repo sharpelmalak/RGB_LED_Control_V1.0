@@ -3,10 +3,10 @@
 
 #include "led.h"
 #include "button.h"
-#include "gpt_interface.h"
+#include "htimer_interface.h"
 
 
-#define MAX_DELAY     100000
+#define DEBOUNCING_DELAY     200
 
 typedef enum {
 	APP_STATE_ZERO = 0,
@@ -15,10 +15,15 @@ typedef enum {
 	APP_STATE_THREE
 }en_app_states_t;
 
+#define DUTY_CYCLE_30           30
+#define DUTY_CYCLE_60           60
+#define DUTY_CYCLE_90           90
+#define SIGNAL_DURATION_MS      500
+
 void app_init(void);
 void app_start(void);
 void switch_cycle_pwm(void);
-void debouncing_handler(void);
+
 
 #endif
 

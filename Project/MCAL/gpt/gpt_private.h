@@ -75,6 +75,8 @@
 #define CLK_FREQ             16000000.0
 #define MICRO_CONVERTER      1000000.0
 #define MILLI_CONVERTER      1000.0
+#define ONE_F                1.0
+#define ZERO_F               0.0
 
 
 

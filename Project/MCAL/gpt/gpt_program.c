@@ -170,8 +170,8 @@ enu_GPT_status_t GPT_init(str_GPT_configs_t *ptr_GPT_configs)
 enu_GPT_status_t GPT_start_timer(enu_GPT_timer_select_t enu_arg_GPT_timer_select ,uint32_t u32_arg_time,enu_time_unit_t enu_arg_time_unit)
 {
 	enu_GPT_status_t enu_GPT_status_return = GPT_OKAY;
-  double f64_tick_time   = 1/CLK_FREQ;
-  double f64_total_ticks = 0.0;	
+  double f64_tick_time   = ONE_F/CLK_FREQ;
+  double f64_total_ticks = ZERO_F;	
 	// check on selected timer range
 	if(enu_arg_GPT_timer_select < GPT_INVALID_TIMER_SELECT)
 	{
@@ -183,29 +183,31 @@ enu_GPT_status_t GPT_start_timer(enu_GPT_timer_select_t enu_arg_GPT_timer_select
 				
 				if(enu_arg_time_unit == TIME_IN_MICROSECONDS)
 				{
-					GPTMTAILR(enu_arg_GPT_timer_select) = (CLK_FREQ/(u32_arg_time/MICRO_CONVERTER));
+					f64_total_ticks = ((u32_arg_time/MICRO_CONVERTER)/(f64_tick_time));
 				}
 				else if(enu_arg_time_unit == TIME_IN_MILLIOSECONDS)
 				{
 					f64_total_ticks = ((u32_arg_time/MILLI_CONVERTER)/(f64_tick_time));
-					GPTMTAILR(enu_arg_GPT_timer_select) = f64_total_ticks;
 				}
 				else 
 				{
-					GPTMTAILR(enu_arg_GPT_timer_select) = (CLK_FREQ/(u32_arg_time));
+					f64_total_ticks = ((u32_arg_time/ONE_F)/(f64_tick_time));
 				}
 				
+				GPTMTAILR(enu_arg_GPT_timer_select) = f64_total_ticks;
+				SET_BIT(GPTMCTL(enu_arg_GPT_timer_select),GPTMCTL_TAEN);
+				
+				// case of interrupt
 				if(GET_BIT(GPTMIMR(enu_arg_GPT_timer_select),GPTMIMR_TATOIM) == TRUE)
 				{
-					// case of interrupt
-					SET_BIT(GPTMCTL(enu_arg_GPT_timer_select),GPTMCTL_TAEN);
+					// do nothing
 				}
 				else
 				{
-					SET_BIT(GPTMCTL(enu_arg_GPT_timer_select),GPTMCTL_TAEN);
 					//STOP UNTIL TIME OUT OCCURES
 					while (GET_BIT(GPTMRIS(enu_arg_GPT_timer_select),GPTMRIS_TATORIS) != TRUE);
 					SET_BIT(GPTMICR(enu_arg_GPT_timer_select),GPTMICR_TATOCINT);
+					GPT_stop_timer(enu_arg_GPT_timer_select);
 				}
 				
 			}
@@ -229,8 +231,42 @@ enu_GPT_status_t GPT_start_timer(enu_GPT_timer_select_t enu_arg_GPT_timer_select
 		
 	return enu_GPT_status_return;
 }
-enu_GPT_status_t GPT_get_elapsed_time(enu_GPT_timer_select_t enu_arg_GPT_timer_select , uint32_t *u32_ptr_time);
-enu_GPT_status_t GPT_get_remaining_time(enu_GPT_timer_select_t enu_arg_GPT_timer_select , uint32_t *u32_ptr_time);
+enu_GPT_status_t GPT_get_elapsed_time(enu_GPT_timer_select_t enu_arg_GPT_timer_select , uint32_t *u32_ptr_time_ms)
+{
+	enu_GPT_status_t enu_GPT_status_return = GPT_OKAY;
+	
+	// check on selected timer range
+	if(enu_arg_GPT_timer_select < GPT_INVALID_TIMER_SELECT)
+	{
+		*u32_ptr_time_ms = (GPTMTAILR(enu_arg_GPT_timer_select) - GPTMTAR(enu_arg_GPT_timer_select))/(CLK_FREQ*MILLI_CONVERTER);
+	}
+	
+	else
+	{
+		enu_GPT_status_return = GPT_TIMER_SELECT_ERROR;
+	}
+		
+		
+	return enu_GPT_status_return;
+}
+enu_GPT_status_t GPT_get_remaining_time(enu_GPT_timer_select_t enu_arg_GPT_timer_select , uint32_t *u32_ptr_time_ms)
+{
+	enu_GPT_status_t enu_GPT_status_return = GPT_OKAY;
+	
+	// check on selected timer range
+	if(enu_arg_GPT_timer_select < GPT_INVALID_TIMER_SELECT)
+	{
+		*u32_ptr_time_ms = GPTMTAR(enu_arg_GPT_timer_select)/(CLK_FREQ*MILLI_CONVERTER);
+	}
+	
+	else
+	{
+		enu_GPT_status_return = GPT_TIMER_SELECT_ERROR;
+	}
+		
+		
+	return enu_GPT_status_return;
+}
 enu_GPT_status_t GPT_enable_interrupt(enu_GPT_timer_select_t enu_arg_GPT_timer_select)
 {
 	enu_GPT_status_t enu_GPT_status_return = GPT_OKAY;
@@ -246,11 +282,20 @@ enu_GPT_status_t GPT_enable_interrupt(enu_GPT_timer_select_t enu_arg_GPT_timer_s
 		else
 		{
 			SET_BIT(GPTMIMR(enu_arg_GPT_timer_select),GPTMIMR_TATOIM);
-			NVIC_EnableIRQ(WTIMER0A_IRQn);
+			if(enu_arg_GPT_timer_select == GPT_TIMER0_SELECT)
+			{
+				NVIC_EnableIRQ(TIMER0A_IRQn);
+			}
+			else if(enu_arg_GPT_timer_select == GPT_WIDE_TIMER0_SELECT)
+			{
+				NVIC_EnableIRQ(WTIMER0A_IRQn);
+			}
+			else
+			{
+				// TODO SUPPORT ALL REST INTERRUPTS
+			}
 			__enable_irq();
 			
-			
-			// TODO SUPPORT ALL REST INTERRUPTS
 		}
 	}
 	
@@ -277,6 +322,18 @@ enu_GPT_status_t GPT_disable_interrupt(enu_GPT_timer_select_t enu_arg_GPT_timer_
 		else
 		{
 			CLEAR_BIT(GPTMIMR(enu_arg_GPT_timer_select),GPTMIMR_TATOIM);
+			if(enu_arg_GPT_timer_select == GPT_TIMER0_SELECT)
+			{
+				NVIC_DisableIRQ(TIMER0A_IRQn);
+			}
+			else if(enu_arg_GPT_timer_select == GPT_WIDE_TIMER0_SELECT)
+			{
+				NVIC_DisableIRQ(WTIMER0A_IRQn);
+			}
+			else
+			{
+				// TODO SUPPORT ALL REST INTERRUPTS
+			}
 		}
 	}
 	
@@ -306,8 +363,7 @@ enu_GPT_status_t GPT_set_pwm(enu_GPT_timer_select_t enu_arg_GPT_timer_select,uin
 		}
 		else
 		{
-			  u16_gs_high_period     = FALSE;
-			  u16_gs_low_period      = FALSE;
+
 			  bool_gs_is_high_period = FALSE;
 			
 				u16_gs_high_period = (u16_arg_signal_duration_ms*u8_arg_duty_cycle)/100;
@@ -327,13 +383,12 @@ enu_GPT_status_t GPT_set_pwm(enu_GPT_timer_select_t enu_arg_GPT_timer_select,uin
 
 enu_GPT_status_t GPT_stop_timer (enu_GPT_timer_select_t enu_arg_GPT_timer_select)
 {
-		enu_GPT_status_t enu_GPT_status_return = GPT_OKAY;
+	enu_GPT_status_t enu_GPT_status_return = GPT_OKAY;
 	
 	// check on selected timer range
 	if(enu_arg_GPT_timer_select < GPT_INVALID_TIMER_SELECT)
 	{
 	  CLEAR_BIT(GPTMCTL(enu_arg_GPT_timer_select),GPTMCTL_TAEN);
-		GPTMTAILR(enu_arg_GPT_timer_select) = 0xFFFFFFFF;
 	}
 	
 	else
@@ -351,19 +406,6 @@ void TIMER0A_Handler(void)
 	{
 		CLEAR_BIT(GPTMCTL(GPT_TIMER0_SELECT),GPTMCTL_TAEN);
 		ptrf_gs_array[GPT_TIMER0_SELECT]();
-		SET_BIT(GPTMICR(GPT_TIMER0_SELECT),GPTMICR_TATOCINT);
-		if(bool_gs_is_high_period == TRUE)
-		{
-			GPT_start_timer(GPT_TIMER0_SELECT,u16_gs_low_period,TIME_IN_MILLIOSECONDS);
-			bool_gs_is_high_period = FALSE;
-		}
-		else
-		{
-			GPT_start_timer(GPT_TIMER0_SELECT,u16_gs_high_period,TIME_IN_MILLIOSECONDS);
-			bool_gs_is_high_period = TRUE;
-		}
-		
-		
 	}
 	else
 	{
@@ -398,3 +440,6 @@ void WTIMER0A_Handler(void)
 		//do nothig
 	}
 }
+
+
+
