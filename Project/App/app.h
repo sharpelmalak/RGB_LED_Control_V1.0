@@ -13,7 +13,7 @@ typedef enum {
 	APP_STATE_ONE,
 	APP_STATE_TWO,
 	APP_STATE_THREE
-};
+}en_app_states_t;
 
 void app_init(void);
 void app_start(void);
