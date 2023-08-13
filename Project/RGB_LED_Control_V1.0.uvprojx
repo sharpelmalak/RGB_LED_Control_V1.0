@@ -10,6 +10,7 @@
       <TargetName>Target 1</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
+      <pCCUsed>5060750::V5.06 update 6 (build 750)::ARMCC</pCCUsed>
       <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -51,7 +52,7 @@
           <OutputName>RGB_LED_Control_V1.0</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
-          <CreateHexFile>0</CreateHexFile>
+          <CreateHexFile>1</CreateHexFile>
           <DebugInformation>1</DebugInformation>
           <BrowseInformation>1</BrowseInformation>
           <ListingPath>.\Listings\</ListingPath>
@@ -257,17 +258,17 @@
                 <Size>0x0</Size>
               </XRAM>
               <OCR_RVCT1>
-                <Type>0</Type>
+                <Type>1</Type>
                 <StartAddress>0x0</StartAddress>
                 <Size>0x0</Size>
               </OCR_RVCT1>
               <OCR_RVCT2>
-                <Type>0</Type>
+                <Type>1</Type>
                 <StartAddress>0x0</StartAddress>
                 <Size>0x0</Size>
               </OCR_RVCT2>
               <OCR_RVCT3>
-                <Type>0</Type>
+                <Type>1</Type>
                 <StartAddress>0x0</StartAddress>
                 <Size>0x0</Size>
               </OCR_RVCT3>
@@ -277,7 +278,7 @@
                 <Size>0x40000</Size>
               </OCR_RVCT4>
               <OCR_RVCT5>
-                <Type>0</Type>
+                <Type>1</Type>
                 <StartAddress>0x0</StartAddress>
                 <Size>0x0</Size>
               </OCR_RVCT5>
@@ -337,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath></IncludePath>
+              <IncludePath>.\App;.\COMMON;.\HAL\led;.\HAL\button;.\MCAL\gpio;.\MCAL\gpt;.\HAL\htimer</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -382,9 +383,14 @@
           <GroupName>app</GroupName>
           <Files>
             <File>
+              <FileName>app.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\App\app.c</FilePath>
+            </File>
+            <File>
               <FileName>app.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\app.h</FilePath>
+              <FilePath>.\App\app.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -394,7 +400,17 @@
             <File>
               <FileName>gpio_interface.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\gpio_interface.h</FilePath>
+              <FilePath>.\MCAL\gpio\gpio_interface.h</FilePath>
+            </File>
+            <File>
+              <FileName>gpio_private.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\MCAL\gpio\gpio_private.h</FilePath>
+            </File>
+            <File>
+              <FileName>gpio_program.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\MCAL\gpio\gpio_program.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -402,9 +418,24 @@
           <GroupName>led</GroupName>
           <Files>
             <File>
+              <FileName>led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\HAL\led\led.c</FilePath>
+            </File>
+            <File>
               <FileName>led.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\led.h</FilePath>
+              <FilePath>.\HAL\led\led.h</FilePath>
+            </File>
+            <File>
+              <FileName>led_cfg.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\HAL\led\led_cfg.c</FilePath>
+            </File>
+            <File>
+              <FileName>led_cfg.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\HAL\led\led_cfg.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -412,9 +443,24 @@
           <GroupName>button</GroupName>
           <Files>
             <File>
+              <FileName>button.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\HAL\button\button.c</FilePath>
+            </File>
+            <File>
               <FileName>button.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\button.h</FilePath>
+              <FilePath>.\HAL\button\button.h</FilePath>
+            </File>
+            <File>
+              <FileName>button_cfg.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\HAL\button\button_cfg.c</FilePath>
+            </File>
+            <File>
+              <FileName>button_cfg.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\HAL\button\button_cfg.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -424,7 +470,52 @@
             <File>
               <FileName>common.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\common.h</FilePath>
+              <FilePath>.\COMMON\common.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>gpt</GroupName>
+          <Files>
+            <File>
+              <FileName>gpt_interface.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\MCAL\gpt\gpt_interface.h</FilePath>
+            </File>
+            <File>
+              <FileName>gpt_private.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\MCAL\gpt\gpt_private.h</FilePath>
+            </File>
+            <File>
+              <FileName>gpt_program.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\MCAL\gpt\gpt_program.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>main</GroupName>
+          <Files>
+            <File>
+              <FileName>main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\main.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>htimer</GroupName>
+          <Files>
+            <File>
+              <FileName>htimer_program.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\HAL\htimer\htimer_program.c</FilePath>
+            </File>
+            <File>
+              <FileName>htimer_interface.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\HAL\htimer\htimer_interface.h</FilePath>
             </File>
           </Files>
         </Group>
